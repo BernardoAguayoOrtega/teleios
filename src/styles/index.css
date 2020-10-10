@@ -35,3 +35,30 @@
 	content: '';
 	background-color: rgba(255, 255, 255, 0.7);
 }
+
+.timeline-item {
+	padding: 4rem 0;
+	opacity: 0.3;
+	filter: blur(0.2rem);
+	transition: 0.5s;
+	box-sizing: border-box;
+	width: calc(50% - 4rem);
+	display: flex;
+	position: relative;
+	transform: translateY(-8rem);
+}
+
+.timeline-item::before {
+	content: attr(data - text);
+	letter-spacing: 0.3rem;
+	width: 100%;
+	position: absolute;
+	color: rgba(255, 255, 255, 0.5);
+	font-size: 1rem;
+	border-left: 2px solid rgba(255, 255, 255, 0.5);
+	top: 70%;
+	margin-top: -0.5rem;
+	padding-left: 15px;
+	opacity: 0;
+	right: calc(-100% - 5rem);
+}
