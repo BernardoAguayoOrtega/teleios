@@ -21,32 +21,93 @@
   </nav>
   <!--Antiguo testamento-->
   <!--start timeline container-->
-  <section class="timeline-container" id="timeline-1">
-    <!--header timeline container-->
-    <header class="timeline-header">
-      <h2 class="timeline-header">
-        Teleios
-      </h2>
-      <h3 class="timeline-header-subtitle">
-        Antiguo y Nuevo Testamento
-      </h3>
-    </header>
-    <!--items time line container-->
+  <div class="timeline-container" id="timeline-1">
+    <div class="timeline-header">
+      <h2 class="timeline-header__title">Antiguo Y nuevo Testamento</h2>
+      <h3 class="timeline-header__subtitle">Teleios</h3>
+    </div>
     <div class="timeline">
-      <div class="timeline-item" aria-label="timeline item">
-        <div aria-label="timeline item content" class="timeline-content">
-          <img class="timeline-img" aria-label="timeline item image"
-            src="../src/assets/images/david-iskander-GTnFf_44e7o-unsplash.jpg" alt="time line image">
-          <h2 class="timeline-content-title">Creación y proposito</h2>
-          <p class="timeline-content-desc">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae tempus ligula. Lorem ipsum dolor sit
-            amet, consectetur adipiscing elit. Phasellus rutrum gravida urna, id feugiat lectus ultricies ac. Mauris
-            posuere, nibh eu gravida viverra, est sem vulputate orci, sit amet commodo turpis neque at tellus.
-          </p>
+      <div class="timeline-item" data-text="creación y propósito">
+        <div class="timeline__content"><img class="timeline__img"
+            src="../src/assets/images/david-iskander-GTnFf_44e7o-unsplash.jpg" />
+          <h2 class="timeline__content-title">Creación y propósito</h2>
+          <p class="timeline__content-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea aspernatur dicta
+            illo delectus enim atque distinctio explicabo quis? Fugit, praesentium.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="NEW TIMELINE DESIGN">
+        <div class="timeline__content"><img class="timeline__img" src="r.jpg" />
+          <h2 class="timeline__content-title">1893</h2>
+          <p class="timeline__content-desc">First enrolled in a traditionalreligious school, he soon switched to a
+            modern school. In 1893, he entered a military highschool where his mathematics teacher gave him the second
+            name Kemal (meaning perfection)in recognition of young Mustafa's superior achievement.</p>
         </div>
       </div>
     </div>
-  </section>
+
+  </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script>
+
+    (function ($) {
+      $.fn.timeline = function () {
+        var selectors = {
+          id: $(this),
+          item: $(this).find(".timeline-item"),
+          activeClass: "timeline-item--active",
+          img: ".timeline__img"
+        };
+        selectors.item.eq(0).addClass(selectors.activeClass);
+        selectors.id.css(
+          "background-image",
+          "url(" +
+          selectors.item
+            .first()
+            .find(selectors.img)
+            .attr("src") +
+          ")"
+        );
+        var itemLength = selectors.item.length;
+        $(window).scroll(function () {
+          var max, min;
+          var pos = $(this).scrollTop();
+          selectors.item.each(function (i) {
+            min = $(this).offset().top;
+            max = $(this).height() + $(this).offset().top;
+            var that = $(this);
+            if (i == itemLength - 2 && pos > min + $(this).height() / 2) {
+              selectors.item.removeClass(selectors.activeClass);
+              selectors.id.css(
+                "background-image",
+                "url(" +
+                selectors.item
+                  .last()
+                  .find(selectors.img)
+                  .attr("src") +
+                ")"
+              );
+              selectors.item.last().addClass(selectors.activeClass);
+            } else if (pos <= max - 40 && pos >= min) {
+              selectors.id.css(
+                "background-image",
+                "url(" +
+                $(this)
+                  .find(selectors.img)
+                  .attr("src") +
+                ")"
+              );
+              selectors.item.removeClass(selectors.activeClass);
+              $(this).addClass(selectors.activeClass);
+            }
+          });
+        });
+      };
+    })(jQuery);
+
+    $("#timeline-1").timeline();
+
+  </script>
 </body>
 
 </html>

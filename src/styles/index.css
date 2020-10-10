@@ -3,85 +3,85 @@
 	margin: 0 auto;
 	flex-wrap: wrap;
 	flex-direction: column;
-	max-width: 70rem;
+	max-width: 700px;
 	position: relative;
 }
-
-.timeline-content-title {
+.timeline__content-title {
 	font-weight: normal;
-	font-size: 5rem;
-	margin: -10px 0 0 0;
-	transition: 4s;
-	padding: 0 1rem;
+	font-size: 66px;
+	margin: 40px 0 0 0;
+	transition: 0.4s;
+	padding: 0 10px;
 	box-sizing: border-box;
-	color: white;
+	font-family: 'Oswald', sans-serif;
+	color: #fff;
 }
-
-.timeline-content-desc {
+.timeline__content-desc {
 	margin: 0;
 	font-size: 15px;
 	box-sizing: border-box;
 	color: rgba(255, 255, 255, 0.7);
+	font-family: 'Roboto Condensed', sans-serif;
 	font-weight: normal;
-	line-height: 2rem;
+	line-height: 25px;
 }
-
-.timeline::before {
+.timeline:before {
 	position: absolute;
 	left: 50%;
-	width: 0.2rem;
+	width: 2px;
 	height: 100%;
-	margin-left: 0.1rem;
+	margin-left: -1px;
 	content: '';
-	background-color: rgba(255, 255, 255, 0.7);
+	background: rgba(255, 255, 255, 0.07);
 }
-
+@media only screen and (max-width: 767px) {
+	.timeline:before {
+		left: 40px;
+	}
+}
 .timeline-item {
-	padding: 4rem 0;
+	padding: 40px 0;
 	opacity: 0.3;
-	filter: blur(0.2rem);
+	filter: blur(2px);
 	transition: 0.5s;
 	box-sizing: border-box;
-	width: calc(50% - 4rem);
+	width: calc(50% - 40px);
 	display: flex;
 	position: relative;
-	transform: translateY(-8rem);
+	transform: translateY(-80px);
 }
-
-.timeline-item::before {
-	content: attr(data - text);
-	letter-spacing: 0.3rem;
+.timeline-item:before {
+	content: attr(data-text);
+	letter-spacing: 3px;
 	width: 100%;
 	position: absolute;
 	color: rgba(255, 255, 255, 0.5);
-	font-size: 1rem;
+	font-size: 13px;
+	font-family: 'Pathway Gothic One', sans-serif;
 	border-left: 2px solid rgba(255, 255, 255, 0.5);
 	top: 70%;
-	margin-top: -0.5rem;
+	margin-top: -5px;
 	padding-left: 15px;
 	opacity: 0;
-	right: calc(-100% - 5rem);
+	right: calc(-100% - 56px);
 }
-
 .timeline-item:nth-child(even) {
 	align-self: flex-end;
 }
-
-.timeline-item:nth-child(even)::before {
+.timeline-item:nth-child(even):before {
 	right: auto;
 	text-align: right;
-	left: calc(0.1% - 5rem);
+	left: calc(-100% - 56px);
 	padding-left: 0;
+	border-left: none;
 	border-right: 2px solid rgba(255, 255, 255, 0.5);
-	padding-right: 1rem;
+	padding-right: 15px;
 }
-
-.timeline-item-active {
+.timeline-item--active {
 	opacity: 1;
 	transform: translateY(0);
 	filter: blur(0px);
 }
-
 .timeline-item--active:before {
 	top: 50%;
 	transition: 0.3s all 0.2s;
