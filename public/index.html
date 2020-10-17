@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Antiguo y nuevo testamento</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../src/styles/baseStyles.css">
+  <link rel="stylesheet" href="../src/styles/index.css">
 </head>
 
 <body>
@@ -18,11 +20,124 @@
     </div>
   </nav>
   <!--Antiguo testamento-->
-  <section class="timeline-container" id="timeline1">
+  <!--start timeline container-->
+  <div class="timeline-container" id="timeline-1">
     <div class="timeline-header">
-      <h2 class="timeline-header-title"></h2>
+      <h2 class="timeline-header__title">Antiguo Y nuevo Testamento</h2>
+      <h3 class="timeline-header__subtitle">Teleios</h3>
     </div>
-  </section>
+    <div class="timeline">
+      <div class="timeline-item" data-text="creación y propósito">
+        <div class="timeline__content"><img class="timeline__img"
+            src="../src/assets/images/david-iskander-GTnFf_44e7o-unsplash.jpg" />
+          <h2 class="timeline__content-title">Creación y propósito</h2>
+          <p class="timeline__content-desc">La creación nos habala de Dios, en el principio creó Dios.
+
+            Colosenses: 1:16
+            
+            Génesis 1:26
+            
+            Génesis 1:27
+            
+            Génesis 1:28
+            
+            Isaías 43:7
+            
+            Dios puso al hombre en el jardín de Edén para que lo cultivara y lo cuidara :house_with_garden: :man: :woman:
+            Génesis 3:8 :ear:
+            
+            Génesis 3:8
+            
+            Propósito
+            Glorificar a Dios, gozar de su presencia y amarle por encima de todo :100:
+            Amar a todos los seres humanos creados a su imagen :heart:
+            Adminsitrar su creación :+1:
+            </p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="Necesidad de Redención">
+        <div class="timeline__content"><img class="timeline__img" src="../src/assets/images/necesidad.jpeg" />
+          <h2 class="timeline__content-title">Necesidad de Redención</h2>
+          <p class="timeline__content-desc">Canal de redención :ocean:
+            Abraham: Genesis 12 - 15
+            Genesis 17 cambio de nombre Abram => Abraham
+            Genesis 17 cambio de nombre Abram => Abraham
+            Promesas a Abraham :pray:
+            Territorio
+            Desendencia
+            Nación
+            Bendicion a todas las familias de la tierra
+            La fe es
+            Depedner en lo que Dios ha declarado a través de sus obras y de su palabra
+            Tomar la palabra de DIos y actuar en consecuencia
+            Confiar en que Dios actuará conforma a su caracter y alas promesas que el ha revelado.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script>
+
+    (function ($) {
+      $.fn.timeline = function () {
+        var selectors = {
+          id: $(this),
+          item: $(this).find(".timeline-item"),
+          activeClass: "timeline-item--active",
+          img: ".timeline__img"
+        };
+        selectors.item.eq(0).addClass(selectors.activeClass);
+        selectors.id.css(
+          "background-image",
+          "url(" +
+          selectors.item
+            .first()
+            .find(selectors.img)
+            .attr("src") +
+          ")"
+        );
+        var itemLength = selectors.item.length;
+        $(window).scroll(function () {
+          var max, min;
+          var pos = $(this).scrollTop();
+          selectors.item.each(function (i) {
+            min = $(this).offset().top;
+            max = $(this).height() + $(this).offset().top;
+            var that = $(this);
+            if (i == itemLength - 2 && pos > min + $(this).height() / 2) {
+              selectors.item.removeClass(selectors.activeClass);
+              selectors.id.css(
+                "background-image",
+                "url(" +
+                selectors.item
+                  .last()
+                  .find(selectors.img)
+                  .attr("src") +
+                ")"
+              );
+              selectors.item.last().addClass(selectors.activeClass);
+            } else if (pos <= max - 40 && pos >= min) {
+              selectors.id.css(
+                "background-image",
+                "url(" +
+                $(this)
+                  .find(selectors.img)
+                  .attr("src") +
+                ")"
+              );
+              selectors.item.removeClass(selectors.activeClass);
+              $(this).addClass(selectors.activeClass);
+            }
+          });
+        });
+      };
+    })(jQuery);
+
+    $("#timeline-1").timeline();
+
+  </script>
 </body>
 
 </html>

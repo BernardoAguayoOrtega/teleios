@@ -1,2 +1,3 @@
-# teleios
-old and new testament project, develop with html, css and js.
+# Teleios website project
+
+This is the final project for old and new testament class :a:
